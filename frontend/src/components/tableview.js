@@ -48,39 +48,58 @@ handleSearchArea = (e) => {
 
 
 
-//Report generation
-  generateReport = () => {
-    const { filteredTables, searchQuery } = this.state;
-    const reportData = filteredTables.map((table) => ({ //reportData is an array that contains an object for each table with properties for each of the relevant table fields
-      name: table.name,
-      email: table.email,
-      phone: table.phone,
-      address: table.address,
-      nic : table.nic,
-     
-      noOfTables: table.noOfTables,
-      type: table.type,
-      decoration: table.decoration,
-      date: table.date,
-      time: table.time,
-     
-      payment:table.payment,
-    }));
-    const reportWindow = window.open(); // open a new window/tab for the report
-    reportWindow.document.write("<html><head><title>Report</title></head><body>"); // start the HTML document for the report
-    reportWindow.document.write(`<h1> ${searchQuery} </h1>`); // add a title to the report
-    reportWindow.document.write(`<h2>Reservation Report</h1>`);
-    reportWindow.document.write("<table>"); // start a table for the report data
-    reportWindow.document.write("<thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile number</th><th>Address</th><th>Number of guests</th><th>Number of tables</th><th>Package type</th><th>Do you prefer Decorations?</th><th>Reservation Date</th><th>Reservation Time</th><th>Note</th></tr></thead><tbody>"); // add the table headers to the report
-    reportData.forEach((table, index) => { // loop through the report data and add a row for each item
-      reportWindow.document.write(`<tr><td>${index + 1}</td><td>${table.name}</td><td>${table.email}</td><td>${table.phone}</td><td>${table.address}</td><td>${table.noOfGuests}</td><td>${table.noOfTables}</td><td>${table.type}</td><td>${table.decoration}</td><td>${table.date}</td><td>${table.time}</td><td>${table.note}</td></tr>`);
-    });
-    reportWindow.document.write("</tbody></table>"); // end the table for the report data
-    reportWindow.document.write("</body></html>"); // end the HTML document for the report
-    reportWindow.document.close(); // close the document for the report
-    reportWindow.print(); // open the print dialog for the report window/tab
-  };
-  
+generateReport = () => {
+  const { filteredTables, searchQuery } = this.state;
+  const reportData = filteredTables.map((table) => ({
+    name: table.name,
+    email: table.email,
+    phone: table.phone,
+    address: table.address,
+    nic: table.nic,
+    noOfTables: table.noOfTables,
+    type: table.type,
+    decoration: table.decoration,
+    date: table.date,
+    time: table.time,
+    payment: table.payment,
+  }));
+
+  const reportWindow = window.open();
+  reportWindow.document.write(
+    "<html><head><title>Report</title><style>table {border-collapse: collapse;} th, td {border: 1px solid black; padding: 8px;}</style></head><body>"
+  );
+  reportWindow.document.write(`<h1> ${searchQuery} </h1>`);
+  reportWindow.document.write("<h2>Reservation Report</h2>");
+  reportWindow.document.write("<table>");
+  reportWindow.document.write(
+    "<thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile number</th><th>Address</th><th>NIC</th><th>Number of Tables</th><th>Package Type</th><th>Decorations</th><th>Reservation Date</th><th>Reservation Time</th><th>Payment</th></tr></thead><tbody>"
+  );
+
+  reportData.forEach((table, index) => {
+    reportWindow.document.write(
+      `<tr>
+         <td>${index + 1}</td>
+         <td>${table.name}</td>
+         <td>${table.email}</td>
+         <td>${table.phone}</td>
+         <td>${table.address}</td>
+         <td>${table.nic}</td>
+         <td>${table.noOfTables}</td>
+         <td>${table.type}</td>
+         <td>${table.decoration}</td>
+         <td>${table.date}</td>
+         <td>${table.time}</td>
+         <td>${table.payment}</td>
+       </tr>`
+    );
+  });
+
+  reportWindow.document.write("</tbody></table>");
+  reportWindow.document.write("</body></html>");
+  reportWindow.document.close();
+  reportWindow.print();
+};
+
               render() {
                 const { searchQuery, filteredTables } = this.state;
                 return (
