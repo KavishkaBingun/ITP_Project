@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import update from "../images/updateres.jpg";
 import '../style.css';
+import { useParams, useNavigate } from 'react-router-dom';
+
 import Header from "./Header";
 import Footer from './Footer';
 
 const UpdateTable = (props) => {
   const {id} = useParams();
+  const navigate = useNavigate();
+
   const [tables, setTables] = useState({
     name: '',
     email: '',
@@ -27,8 +30,6 @@ const UpdateTable = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const id = props.match.params.id;
-        
         const response = await axios.get(`http://localhost:8070/tables/get/${id}`);
         const data = response.data.tables;
         setTables(data);
@@ -37,6 +38,7 @@ const UpdateTable = (props) => {
         setError('Error retrieving table data');
       }
     };
+
 
     fetchData();
   }, [id]);
@@ -52,19 +54,19 @@ const UpdateTable = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      //const id = props.match.params.id;
       const updatedTables = {
         ...tables,
         payment: calculatePayment() // Update the payment value before sending the request
       };
       await axios.put(`http://localhost:8070/tables/update/${id}`, tables);
       alert('Reservation updated successfully');
-      props.history.goBack();
+      navigate(-1);
     } catch (error) {
       console.log(error);
       setError('Error updating reservation');
     }
   };
+
 
   function calculatePayment() {
     let pricepertable = 0;
@@ -109,8 +111,6 @@ const UpdateTable = (props) => {
       payment: calculatePayment() // Update the payment value initially
     }));
   }, [tables.type, tables.decoration, tables.noOfTables]);
-
-  
   
 
   return (
