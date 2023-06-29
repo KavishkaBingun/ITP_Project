@@ -127,7 +127,7 @@ const UpdateTable = (props) => {
       </div>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <div className="container" style={{ left: "80%" }}>
-        <h1 className='h3 mb-3 font-weight-normal'>Edit post</h1>
+        <h1 className='h3 mb-3 font-weight-normal'>Edit Reservation</h1>
         <form className='needs-validation' onSubmit={onSubmit}>
           <div className='form-group' style={{ marginBottom: '15px' }}>
             <label className="form-label" style={{ marginBottom: '5px' }}>Name</label>

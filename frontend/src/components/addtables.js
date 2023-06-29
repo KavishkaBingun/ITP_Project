@@ -125,18 +125,6 @@ export default function Inserttables(){
       setShowForm(!showForm);
     }
 
-
-
-
-
-
-
-
-
-   
-
-
-
     return(
       
 

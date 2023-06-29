@@ -4,7 +4,7 @@ import Swal from "sweetalert2";//Import the SweetAlert2 library for displaying a
 
 export default function DeleteTables() {
   const { id } = useParams();//Retrieve the ID parameter from the URL using the useParams hook
-  const history = useNavigate();//Get the history object from the useHistory hook to navigate back to the previous page.
+  const navigate = useNavigate();//Get the history object from the useHistory hook to navigate back to the previous page.
 
   function deleteTable() {// Define the deleteTable function that will make the HTTP DELETE request to delete the table record with the specified ID.
     axios
@@ -14,8 +14,8 @@ export default function DeleteTables() {
           icon: "success",
           title: "Table data deleted",
           confirmButtonText: "OK",
-        }).then(() => {//If the request is successful, show a success message using SweetAlert2 and navigate back to the previous page using the history.goBack() method.
-          history.goBack();
+        }).then(() => {//If the request is successful, show a success message using SweetAlert2 and navigate back to the previous page
+          navigate(-1); // Navigate back to the previous page using navigate(-1)
         });
       })
       .catch(function (err) {//If an error occurs, show an error message using SweetAlert2 and display the error message.
@@ -28,5 +28,6 @@ export default function DeleteTables() {
       });
   }
 
-  deleteTable(); //Call the deleteTable function to initiate the delete operation
+  deleteTable();//Call the deleteTable function to initiate the delete operation
+
 }

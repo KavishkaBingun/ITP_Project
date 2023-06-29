@@ -35,10 +35,64 @@ font-family: "Lucida Console", "Courier New", monospace;
     margin-left: 400px;
     margin-top: 100px;
 }
-
-
-  
-
+.col-md-4{
+    
+    height: 100dp;
+}
+#container {
+    margin-top: 50px;
+  }
+  h4 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .card-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  #col-md-4 {
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    width: 300px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  .card h5 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  .card p {
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  .card span {
+    font-weight: bold;
+  }
+  @media (max-width: 768px) {
+    .card-row {
+      justify-content: flex-start;
+    }
+    #col-md-4 {
+        flex: 0 0 100%;
+      }
+    }
 
 
 
